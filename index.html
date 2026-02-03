@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pra você 💙</title>
 
-  <!-- Fonte manuscrita mais legível -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap" rel="stylesheet">
 
   <style>
@@ -69,7 +68,6 @@
       margin-bottom: 22px;
     }
 
-    /* Polaroid */
     .polaroid {
       background: white;
       padding: 10px 10px 26px;
@@ -88,15 +86,22 @@
       font-size: 16px;
       margin-top: 8px;
     }
+
+    /* iframe invisível */
+    iframe {
+      display: none;
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- Música romântica (FUNCIONA) -->
-  <audio id="musica">
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c3b91f8b4.mp3" type="audio/mpeg">
-  </audio>
+  <!-- Careless Whisper (YouTube embutido) -->
+  <iframe
+    id="ytplayer"
+    src=""
+    allow="autoplay"
+  ></iframe>
 
   <div class="card">
     <div class="envelope">💌</div>
@@ -137,11 +142,12 @@
       document.getElementById("conteudo").style.display = "block";
       document.querySelector("button").style.display = "none";
 
-      const musica = document.getElementById("musica");
-      musica.volume = 0.25;
-      musica.play().catch(() => {});
+      // Careless Whisper (começa do início)
+      document.getElementById("ytplayer").src =
+        "https://www.youtube.com/embed/izGwDsrQ1eQ?autoplay=1&start=0";
     }
   </script>
 
 </body>
 </html>
+
