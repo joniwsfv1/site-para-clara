@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Para Clara 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #ff0080, #7928ca, #2afadf);
+      background-size: 400% 400%;
+      animation: gradient 10s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .carta {
+      width: 220px;
+      height: 150px;
+      background: white;
+      border-radius: 10px;
+      margin: 0 auto 20px;
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .carta::before {
+      content: '💌';
+      font-size: 60px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    button {
+      padding: 15px 40px;
+      font-size: 18px;
+      font-family: 'Pacifico', cursive;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      background: linear-gradient(45deg, #ff4ecd, #ffb86c);
+      color: #fff;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    .mensagem {
+      display: none;
+      font-family: 'Pacifico', cursive;
+      font-size: 36px;
+      margin-top: 30px;
+      animation: aparecer 1.5s ease forwards;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .animal {
+      position: absolute;
+      font-size: 40px;
+      animation: voar 12s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes voar {
+      from { transform: translateX(-100px); }
+      to { transform: translateX(110vw); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animais voando -->
+  <div class="animal" style="top: 10%; animation-delay: 0s;">🦋</div>
+  <div class="animal" style="top: 30%; animation-delay: 3s;">🕊️</div>
+  <div class="animal" style="top: 60%; animation-delay: 6s;">🐦</div>
+  <div class="animal" style="top: 80%; animation-delay: 9s;">🦜</div>
+
+  <div class="container">
+    <div class="carta"></div>
+    <button onclick="abrirCarta()">Abrir</button>
+    <div class="mensagem" id="mensagem">Te amo Clara de montão 💖</div>
+  </div>
+
+  <script>
+    function abrirCarta() {
+      const msg = document.getElementById('mensagem');
+      msg.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
