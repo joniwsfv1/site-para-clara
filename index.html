@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pra você 💙</title>
 
-  <!-- Fonte manuscrita bonita e legível -->
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Fonte manuscrita mais legível -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -18,7 +18,7 @@
     body {
       min-height: 100vh;
       font-family: 'Dancing Script', cursive;
-      background: black url("https://i.gifer.com/7VE.gif") center / cover no-repeat fixed;
+      background: #000;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -26,14 +26,14 @@
     }
 
     .card {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(20, 20, 20, 0.9);
       border-radius: 20px;
       padding: 25px;
-      max-width: 340px;
-      width: 90%;
+      max-width: 360px;
+      width: 92%;
       text-align: center;
-      box-shadow: 0 0 25px rgba(255,255,255,0.1);
-      animation: fadeIn 1.5s ease;
+      box-shadow: 0 0 30px rgba(255,255,255,0.08);
+      animation: fadeIn 1.2s ease;
     }
 
     @keyframes fadeIn {
@@ -42,24 +42,19 @@
     }
 
     .envelope {
-      font-size: 40px;
-      margin-bottom: 10px;
+      font-size: 42px;
+      margin-bottom: 12px;
     }
 
     button {
       background: #ff5c8a;
       border: none;
-      padding: 10px 25px;
+      padding: 12px 28px;
       border-radius: 30px;
       color: white;
       font-size: 18px;
       cursor: pointer;
-      margin: 10px 0 20px;
-      transition: transform 0.2s;
-    }
-
-    button:hover {
-      transform: scale(1.05);
+      margin-bottom: 20px;
     }
 
     .conteudo {
@@ -68,19 +63,18 @@
     }
 
     .mensagem {
-      font-size: 19px;
-      line-height: 2;
-      font-weight: 400;
+      font-size: 20px;
+      line-height: 1.9;
       text-align: left;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
-    /* Foto estilo polaroid */
+    /* Polaroid */
     .polaroid {
       background: white;
-      padding: 10px 10px 25px;
+      padding: 10px 10px 26px;
       border-radius: 6px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
       transform: rotate(-2deg);
     }
 
@@ -93,39 +87,40 @@
       color: #000;
       font-size: 16px;
       margin-top: 8px;
-      text-align: center;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Música romântica -->
-  <audio id="musica" loop>
-    <source src="https://cdn.pixabay.com/audio/2023/03/28/audio_53fbc1d4c7.mp3" type="audio/mpeg">
+  <!-- Música romântica (FUNCIONA) -->
+  <audio id="musica">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7c3b91f8b4.mp3" type="audio/mpeg">
   </audio>
 
   <div class="card">
     <div class="envelope">💌</div>
+
     <button onclick="abrirCarta()">Abrir</button>
 
     <div class="conteudo" id="conteudo">
       <div class="mensagem">
         Clara,<br><br>
 
-        eu fiz isso aqui porque tem coisa que não cabe em mensagem,
-        nem em explicação. Só se sente.<br><br>
+        eu fiz isso aqui porque tem coisa que não dá pra explicar direito,
+        só sentir.<br><br>
 
-        eu amo quando você chega toda <b>xerosa</b>, do seu jeitinho,
-        sendo minha <b>bb fofuainha</b> sem nem tentar.<br><br>
+        eu amo quando você chega toda <b>xerosa</b>,
+        com esse jeitinho que é só seu,
+        sendo minha <b>bb fofuainha</b> sem esforço nenhum.<br><br>
 
-        você tem esse dom de deixar tudo mais leve,
-        de me acalmar, de ser minha <b>princesa</b>
-        até nos dias comuns.<br><br>
+        você deixa tudo mais leve,
+        me acalma,
+        e faz dos dias comuns algo especial.<br><br>
 
-        você virou meu lugar seguro,
-        meu pensamento bom,
-        e a pessoa que eu escolho todo dia.<br><br>
+        você é minha <b>princesa</b>,
+        meu lugar seguro
+        e a pessoa que eu escolho todos os dias.<br><br>
 
         eu te amo, <b>pichuca</b>. 💙
       </div>
@@ -143,8 +138,8 @@
       document.querySelector("button").style.display = "none";
 
       const musica = document.getElementById("musica");
-      musica.volume = 0.3;
-      musica.play();
+      musica.volume = 0.25;
+      musica.play().catch(() => {});
     }
   </script>
 
