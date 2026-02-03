@@ -1,149 +1,132 @@
+<!DOCTYPE html> <html lang="pt-BR"> <head>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pra você 💙</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pra você 💙</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      min-height: 100vh;
-      background: black url("https://i.imgur.com/9aK0X2B.gif") repeat;
-      background-size: cover;
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+body {
+  min-height: 100vh;
+  background: black url("https://media.tenor.com/2roX3uxz_68AAAAC/space-stars.gif") center center / cover no-repeat fixed;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    .card {
-      background: rgba(0,0,0,0.65);
-      padding: 30px;
-      border-radius: 18px;
-      max-width: 380px;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(0,0,0,0.7);
-      animation: fade 1.2s ease;
-    }
+.card {
+  background: rgba(0,0,0,0.7);
+  padding: 30px;
+  border-radius: 18px;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
 
-    .envelope {
-      font-size: 58px;
-      margin-bottom: 10px;
-      animation: float 3s ease-in-out infinite;
-    }
+.envelope {
+  font-size: 55px;
+  margin-bottom: 10px;
+  animation: float 3s ease-in-out infinite;
+}
 
-    button {
-      margin-top: 10px;
-      padding: 12px 32px;
-      border: none;
-      border-radius: 30px;
-      background: linear-gradient(45deg, #ff4d6d, #ff85a1);
-      color: white;
-      font-size: 15px;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(255,77,109,0.6);
-    }
+button {
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(45deg, #ff4d6d, #ff85a1);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
 
-    .mensagem {
-      display: none;
-      margin-top: 20px;
-      font-size: 16px;
-      line-height: 1.6;
-      text-align: left;
-      animation: fade 1s ease;
-    }
+.mensagem {
+  display: none;
+  margin-top: 20px;
+  text-align: left;
+  line-height: 1.6;
+}
 
-    /* POLAROID */
-    .polaroid {
-      margin: 20px auto;
-      background: #fff;
-      padding: 10px 10px 25px;
-      width: 260px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-      transform: rotate(-2deg);
-    }
+.polaroid {
+  background: white;
+  padding: 10px 10px 25px;
+  width: 250px;
+  margin: 20px auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+  transform: rotate(-2deg);
+}
 
-    .polaroid img {
-      width: 100%;
-      border-radius: 4px;
-    }
+.polaroid img {
+  width: 100%;
+}
 
-    .polaroid span {
-      color: #000;
-      font-size: 14px;
-    }
+.polaroid span {
+  color: black;
+  font-size: 14px;
+}
 
-    .assinatura {
-      margin-top: 15px;
-      font-family: 'Great Vibes', cursive;
-      font-size: 24px;
-      text-align: right;
-    }
+.assinatura {
+  font-family: 'Great Vibes', cursive;
+  font-size: 26px;
+  text-align: right;
+  margin-top: 10px;
+}
 
-    @keyframes float {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
-
-    @keyframes fade {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="card">
-    <div class="envelope">💌</div>
-    <button onclick="abrir()">Abrir</button>
+<div class="card">
+  <div class="envelope">💌</div>
+  <button onclick="abrir()">Abrir</button>
 
-    <div class="mensagem" id="msg">
-      Clara,<br><br>
+  <div class="mensagem" id="msg">
+    Clara,<br><br>
 
-      eu fiz isso aqui porque tem coisa que eu não sei explicar falando,
-      mas eu sinto forte demais.<br><br>
+    eu fiz isso aqui porque tem coisa que não sai direito falando,
+    mas eu sinto forte demais.<br><br>
 
-      eu amo quando você chega toda xerosa,
-      do seu jeitinho,
-      sendo minha bb fofuainha sem nem tentar.<br><br>
+    eu amo quando você chega toda xerosa,
+    do seu jeitinho,
+    sendo minha bb fofuainha sem esforço nenhum.<br><br>
 
-      você tem esse dom de deixar tudo mais leve,
-      de me acalmar,
-      de ser minha princesa até nos dias comuns.<br><br>
+    você tem esse dom de acalmar tudo,
+    de virar meu lugar seguro,
+    minha princesa até nos dias mais comuns.<br><br>
 
-      você virou meu lugar seguro,
-      meu pensamento bom,
-      e a pessoa que eu escolho todo dia.<br><br>
-
-      <div class="polaroid">
-        <img src="foto-nos.jpg" alt="nós dois">
-        <span>💙 nós</span>
-      </div>
-
-      te amo pichuca.
-      <div class="assinatura">— joni</div>
+    <div class="polaroid">
+      <img src="foto-nos.jpg">
+      <span>💙 nós</span>
     </div>
+
+    te amo pichuca.
+    <div class="assinatura">— joni</div>
   </div>
+</div>
 
-  <!-- 🎵 MÚSICA ROMÂNTICA -->
-  <audio id="musica" loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7b7bfcba8f.mp3" type="audio/mpeg">
-  </audio>
+<audio id="musica" loop>
+  <source src="https://cdn.pixabay.com/audio/2023/03/28/audio_4f8c5f5e63.mp3" type="audio/mpeg">
+</audio>
 
-  <script>
-    function abrir() {
-      document.getElementById("msg").style.display = "block";
-      const musica = document.getElementById("musica");
-      musica.volume = 0.4;
-      musica.play();
-    }
-  </script>
+<script>
+function abrir() {
+  document.getElementById("msg").style.display = "block";
+  const m = document.getElementById("musica");
+  m.volume = 0.5;
+  m.play();
+}
+</script>
 
 </body>
 </html>
