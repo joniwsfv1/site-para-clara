@@ -95,63 +95,107 @@ button:disabled {
 
 
 
-<script> const room = location.hash.replace("#", "") || "joni-e-clara";
+<script>
+let current = 0;
+let answered = false;
+let score = 0;
+
+  
+  const room = location.hash.replace("#", "") || "joni-e-clara";
 location.hash = room;
 
 const playerId = Math.random().toString(36).substr(2, 9);
 const roomRef = db.ref("rooms/" + room);
 
 const questions = [
-  {
-    q: "Um sábado perfeito é…",
-    a: ["Ficar em casa juntos", "Sair sem rumo"]
-  },
-  {
-    q: "Quem manda mensagem primeiro?",
-    a: ["Joni", "Clara"]
-  },
-  {
-    q: "Filme preferido juntos?",
-    a: ["Romance", "Terror"]
-  }
+  { q: "Um sábado perfeito é...", a: ["Ficar em casa juntos", "Sair sem rumo"] },
+  { q: "Filme ideal?", a: ["Romance", "Terror"] },
+  { q: "Quem sente mais saudade?", a: ["Joni", "Clara"] },
+  { q: "Viagem dos sonhos?", a: ["Praia", "Montanha"] },
+  { q: "Mais ciumento?", a: ["Joni", "Clara"] }
 ];
+
 
 let current = 0;
 let answered = false;
 
 function loadQuestion() {
-  const q = questions[current];
-  document.getElementById("question").innerText = q.q;
-  document.getElementById("btn1").innerText = q.a[0];
-  document.getElementById("btn2").innerText = q.a[1];
+  answered = false;
+
+  document.getElementById("question").innerText =
+    questions[current].q;
+
+  document.getElementById("btn1").innerText =
+    questions[current].a[0];
+
+  document.getElementById("btn2").innerText =
+    questions[current].a[1];
+
+  document.getElementById("result").innerText = "";
 }
 
-roomRef.child("answers").on("value", snap => {
-  const answers = snap.val() || {};
+
+roomRef.child("answers/" + current).on("value", snap => {
+  const answers = snap.val();
+  if (!answers) return;
+
   const players = Object.keys(answers);
+  if (players.length < 2) return;
 
-  document.getElementById("status").innerText =
-    players.length < 2 ? "Aguardando o outro jogador…" : "Os dois estão conectados 💞";
+  const values = Object.values(answers);
 
-  if (players.length === 2) {
-    const values = Object.values(answers);
-    if (values[0] === values[1]) {
-      document.getElementById("result").innerText = "💖 Vocês pensaram igual!";
-    } else {
-      document.getElementById("result").innerText = "😅 Diferentes, mas combinam!";
-    }
+  if (values[0] === values[1]) {
+    score++;
+    document.getElementById("result").innerText =
+      "💖 Vocês pensaram igual!";
+  } else {
+    document.getElementById("result").innerText =
+      "😅 Diferentes, mas combinam!";
   }
+
+  setTimeout(nextQuestion, 2000);
 });
+
 
 function choose(option) {
   if (answered) return;
   answered = true;
 
-  roomRef.child("answers/" + playerId).set(option);
-  document.getElementById("result").innerText = "Escolha enviada 💌";
-  document.getElementById("btn1").disabled = true;
-  document.getElementById("btn2").disabled = true;
+  roomRef
+    .child("answers/" + current + "/" + playerId)
+    .set(option);
 }
+
+  
+  function nextQuestion() {
+  roomRef.child("answers/" + current).remove();
+
+  current++;
+
+  if (current >= questions.length) {
+    showResult();
+  } else {
+    loadQuestion();
+  }
+}
+
+function showResult() {
+  const percent = Math.round((score / questions.length) * 100);
+
+  document.getElementById("question").innerText =
+    "Resultado Final 💘";
+
+  document.getElementById("btn1").style.display = "none";
+  document.getElementById("btn2").style.display = "none";
+
+  document.getElementById("result").innerHTML = `
+    Vocês combinaram em <b>${percent}%</b> 💕<br><br>
+    ${percent >= 80 ? "Almas gêmeas 🥰" :
+      percent >= 50 ? "Casal forte 💞" :
+      "Opostos que se atraem 😏"}
+  `;
+}
+
 
 loadQuestion();
 </script>
