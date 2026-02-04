@@ -95,7 +95,7 @@ button:disabled {
 
 
 // Sala pelo hash da URL
-const room = location.hash.replace("#", "") || "joni-e-clara";
+<script> const room = location.hash.replace("#", "") || "joni-e-clara";
 location.hash = room;
 
 const playerId = Math.random().toString(36).substr(2, 9);
@@ -154,6 +154,7 @@ function choose(option) {
 }
 
 loadQuestion();
+</script>
 <body
 <a href="entrenos.html">💖 Jogar Entre Nós</a>
 </body>
