@@ -152,23 +152,25 @@ function choose(option) {
 }
 
 loadQuestion();
-</script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
+<script>
+const firebaseConfig = {
+  apiKey: "SUA_API_KEY",
+  authDomain: "joni-e-clara.firebaseapp.com",
+  databaseURL: "https://joni-e-clara-default-rtdb.firebaseio.com",
+  projectId: "joni-e-clara",
+  storageBucket: "joni-e-clara.appspot.com",
+  messagingSenderId: "XXXX",
+  appId: "XXXX"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+</script>
+<body
+<a href="entrenos.html">💖 Jogar Entre Nós</a>
 </body>
 </html>
-<a href="entrenos.html">💖 Jogar Entre Nós</a>
-const firebaseConfig = {
 
-  apiKey: «AIzaSyBrv-pX5Kz0anUKkAFwj-di_2xGc-Hkg4c»,
-
-  authDomainTradução: «joni-e-clara.firebaseapp.com» (em inglês),
-
-  projetoId: "joni-e-clara",
-
-  armazenamentoBucket: «joni-e-clara.firebasestorage.app» (em inglês),
-
-  mensagensSenderId: "173695416195",
-
-  appid: «1:173695416195:web:fc7c7dd41dad40e3e028b6»
-
-};
