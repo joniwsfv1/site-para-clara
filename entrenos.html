@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Entre Nós — Joni & Clara</title>
+
+<!-- Fonte romântica e legível -->
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: 'Patrick Hand', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.2em;
+  margin-bottom: 10px;
+}
+
+.question {
+  font-size: 1.4em;
+  margin: 20px 0;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: #fff;
+  color: #000;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 1.3em;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>💖 Entre Nós</h1>
+  <div id="status">Aguardando o outro jogador…</div>
+
+  <div class="question" id="question"></div>
+
+  <button onclick="choose(0)" id="btn1"></button>
+  <button onclick="choose(1)" id="btn2"></button>
+
+  <div class="result" id="result"></div>
+</div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script>
+// 🔥 CONFIGURE SEU FIREBASE AQUI 🔥
+const firebaseConfig = {
+  apiKey: "SUA_API_KEY",
+  authDomain: "SEU_PROJETO.firebaseapp.com",
+  databaseURL: "https://SEU_PROJETO-default-rtdb.firebaseio.com",
+  projectId: "SEU_PROJETO",
+  storageBucket: "SEU_PROJETO.appspot.com",
+  messagingSenderId: "ID",
+  appId: "APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+// Sala pelo hash da URL
+const room = location.hash.replace("#", "") || "joni-e-clara";
+location.hash = room;
+
+const playerId = Math.random().toString(36).substr(2, 9);
+const roomRef = db.ref("rooms/" + room);
+
+const questions = [
+  {
+    q: "Um sábado perfeito é…",
+    a: ["Ficar em casa juntos", "Sair sem rumo"]
+  },
+  {
+    q: "Quem manda mensagem primeiro?",
+    a: ["Joni", "Clara"]
+  },
+  {
+    q: "Filme preferido juntos?",
+    a: ["Romance", "Terror"]
+  }
+];
+
+let current = 0;
+let answered = false;
+
+function loadQuestion() {
+  const q = questions[current];
+  document.getElementById("question").innerText = q.q;
+  document.getElementById("btn1").innerText = q.a[0];
+  document.getElementById("btn2").innerText = q.a[1];
+}
+
+roomRef.child("answers").on("value", snap => {
+  const answers = snap.val() || {};
+  const players = Object.keys(answers);
+
+  document.getElementById("status").innerText =
+    players.length < 2 ? "Aguardando o outro jogador…" : "Os dois estão conectados 💞";
+
+  if (players.length === 2) {
+    const values = Object.values(answers);
+    if (values[0] === values[1]) {
+      document.getElementById("result").innerText = "💖 Vocês pensaram igual!";
+    } else {
+      document.getElementById("result").innerText = "😅 Diferentes, mas combinam!";
+    }
+  }
+});
+
+function choose(option) {
+  if (answered) return;
+  answered = true;
+
+  roomRef.child("answers/" + playerId).set(option);
+  document.getElementById("result").innerText = "Escolha enviada 💌";
+  document.getElementById("btn1").disabled = true;
+  document.getElementById("btn2").disabled = true;
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
+<a href="entrenos.html">💖 Jogar Entre Nós</a>
